@@ -1,11 +1,10 @@
-# Translation API (Step 2)
+# Translation API
 
-This project sets up a Flask-based translation service using a pre-trained Hugging Face model: `facebook/nllb-200-distilled-600M`.
+This project sets up a Flask-based translation service using a pre-trained Hugging Face model: `Helsinki-NLP/opus-mt-en-fr`.
 
-At this stage, the project loads the model and verifies it can generate a basic translation. 
+At this stage, the project loads the model and verifies it can generate a basic translation.
 
-The model takes English text as input and translates it to French using the target language code `fra_Latn`.
-
+The model takes English text as input and translates it to French.
 
 ## Setup
 
