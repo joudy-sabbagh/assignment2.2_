@@ -33,5 +33,9 @@ The model takes English text as input and translates it to French.
     curl -X POST http://127.0.0.1:5000/translate_eng_to_fr ^
         -H "Content-Type: application/json" ^
         -d "{\"text\": \"Hello, how are you?\"}"
+
+    curl -X POST http://127.0.0.1:5000/translate_eng_to_ar ^
+        -H "Content-Type: application/json" ^
+        -d "{\"text\": \"Hello, how are you?\"}"
     ````
 
