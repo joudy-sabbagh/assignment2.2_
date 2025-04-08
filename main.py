@@ -22,8 +22,8 @@ def home():
     return {"message": "Translation API is running"}
 
 # THIS ROUTES TAKES INPUT TEXT IN ENGLISH AND RETURN IT'S TRANSLATION IN FRENCH
-@app.route("/translate", methods=["POST"])
-def translate():
+@app.route("/translate_eng_to_fr", methods=["POST"])
+def translate_eng_to_fr():
     data = request.get_json()
     text = data.get("text")
 
@@ -54,8 +54,8 @@ def translate():
 
 API_URL_Eng_to_Ar = "https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-en-ar"
 # THIS ROUTE TAKES INPUT TEXT IN ENGLISH AND RETURNS ITS TRANSLATION IN ARABIC
-@app.route("/translate", methods=["POST"])
-def translate():
+@app.route("/translate_eng_to_ar", methods=["POST"])
+def translate_eng_to_ar():
     data = request.get_json()
     text = data.get("text")
 
