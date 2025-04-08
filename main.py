@@ -52,5 +52,40 @@ def translate():
 
     return jsonify({"translation": translation})
 
+API_URL_Eng_to_Ar = "https://api-inference.huggingface.co/models/Helsinki-NLP/opus-mt-en-ar"
+# THIS ROUTE TAKES INPUT TEXT IN ENGLISH AND RETURNS ITS TRANSLATION IN ARABIC
+@app.route("/translate", methods=["POST"])
+def translate():
+    data = request.get_json()
+    text = data.get("text")
+
+    if not text:
+        return jsonify({"error": "Missing 'text' in request"}), 400
+
+    payload = {"inputs": text}
+
+    response = requests.post(API_URL_Eng_to_Ar, headers=headers, json=payload)
+
+    try:
+        result = response.json()
+    except requests.exceptions.JSONDecodeError:
+        return jsonify({
+            "error": "Hugging Face returned invalid JSON",
+            "raw_response": response.text
+        }), 500
+
+    if response.status_code != 200:
+        return jsonify({
+            "error": "Hugging Face API error",
+            "details": result
+        }), 500
+
+    try:
+        translation = result[0]["translation_text"]
+    except (KeyError, IndexError):
+        return jsonify({"error": "Unexpected response format", "result": result}), 500
+
+    return jsonify({"translation": translation})
+
 if __name__ == "__main__":
     app.run(debug=True)
