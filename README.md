@@ -1,9 +1,6 @@
 # Translation API
 
 This project sets up a Flask-based translation service using a pre-trained Hugging Face model: `Helsinki-NLP/opus-mt-en-fr`.
-
-At this stage, the project loads the model and verifies it can generate a basic translation.
-
 The model takes English text as input and translates it to French.
 
 ## Setup
@@ -24,10 +21,17 @@ The model takes English text as input and translates it to French.
     pip install -r requirements.txt
     ```
 
-3. Run the test script to load the model and print a sample translation:
+3. Run the API:
 
     ```bash
     python main.py
     ```
 
-**Note:** The first time you run this, it will download the model and tokenizer from Hugging Face. This may take a few minutes.
+4. Send a request to the translation endpoint:
+
+    ```bash
+    curl -X POST http://127.0.0.1:5000/translate ^
+        -H "Content-Type: application/json" ^
+        -d "{\"text\": \"Hello, how are you?\"}"
+    ````
+
